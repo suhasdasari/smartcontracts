@@ -1,0 +1,29 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.17;
+
+import "./Math.sol";
+import "./ArrayLib.sol";
+
+contract TestMath {
+    function testMax(uint x, uint y) external pure returns (uint) {
+        return Math.max(x, y);
+    }
+
+    function testMin(uint x, uint y) external pure returns (uint) {
+        return Math.min(x, y);
+    }
+}
+
+contract TestArray {
+    using ArrayLib for uint[];
+
+    uint[] public arr = [3, 2, 1];
+
+    function testFind() external view {
+        arr.find(2);
+    }
+
+    function testSum() external view returns (uint) {
+        return arr.sum();
+    }
+}
