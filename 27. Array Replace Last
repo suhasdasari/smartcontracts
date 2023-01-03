@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.17;
+
+contract ArrayReplaceLast {
+    uint[] public arr = [1, 2, 3, 4];
+
+    function remove(uint _index) external {
+        // Move the last element into the place to delete
+        arr[_index] = arr[arr.length - 1];
+        // Remove the last element
+        arr.pop();
+    }
+}
