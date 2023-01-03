@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.17;
+
+contract Constants {
+    address public constant MY_ADDR = 0x777788889999AaAAbBbbCcccddDdeeeEfFFfCcCc;
+    uint public constant MY_UINT = 123;
+}
+
+/* State variables can be declared as constant. 
+Value of constant variables must be set before compilation 
+and it cannot be modified after the contract is compiled. */
